@@ -1,9 +1,8 @@
 package com.lyh.admin_template.back.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,15 +40,20 @@ public class User implements Serializable {
     @ApiModelProperty(value = "用户密码")
     private String password;
 
+
+    @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "修改时间")
     private Date updateTime;
 
+    @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "逻辑删除标志，0 表示未删除， 1 表示删除")
     private Integer deleteFlag;
 
+    @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "版本号")
     private Integer version;
 
