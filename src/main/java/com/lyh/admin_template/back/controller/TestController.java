@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 /**
  * @program: back
  * @description: 444
@@ -57,4 +59,14 @@ public class TestController {
     public Result testSwagger(){
         return Result.ok(true,200,"嗨咯");
     }
+
+    @ApiOperation(value = "删除指定姓名的用户")
+    @DeleteMapping("/testMyBatisPlus/LogicDel")
+    public Result testMyBatisPlusLogicDel(@RequestParam String name) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("name", name);
+        userService.removeByMap(hashMap);
+        return Result.ok(true,200,"删除成功");
+    }
+
 }

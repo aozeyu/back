@@ -50,6 +50,7 @@ public class User implements Serializable {
     private Date updateTime;
 
     @TableField(fill = FieldFill.INSERT)
+    @TableLogic(value = "0", delval = "1")
     @ApiModelProperty(value = "逻辑删除标志，0 表示未删除， 1 表示删除")
     private Integer deleteFlag;
 
