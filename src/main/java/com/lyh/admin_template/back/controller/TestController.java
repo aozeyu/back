@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lyh.admin_template.back.common.exception.GlobalException;
 import com.lyh.admin_template.back.common.utils.ExceptionUtil;
+import com.lyh.admin_template.back.common.utils.MessageSourceUtil;
 import com.lyh.admin_template.back.common.utils.Result;
 import com.lyh.admin_template.back.common.validator.group.AddGroup;
 import com.lyh.admin_template.back.common.validator.group.UpdateGroup;
@@ -30,6 +31,8 @@ import java.util.HashMap;
 public class TestController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private MessageSourceUtil messageSourceUtil;
     @ApiOperation(value = "获取用户信息")
     @GetMapping("/getListOfUser")
     public Result testGetListOfUser() {
@@ -98,5 +101,11 @@ public class TestController {
             return Result.ok(true,200,"更新成功").message("数据更新成功");
         }
         return Result.error().message("数据更新失败");
+    }
+
+    @ApiOperation(value = "测试国际化返回数据")
+    @GetMapping("/testLocale")
+    public Result testI18n() {
+        return Result.ok(true,200,"国际化").data("test", messageSourceUtil.getMessage("test"));
     }
 }
