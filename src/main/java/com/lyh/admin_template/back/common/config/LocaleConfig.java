@@ -3,12 +3,14 @@ package com.lyh.admin_template.back.common.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+import javax.validation.Validator;
 import java.util.Locale;
 
 /**
@@ -58,4 +60,17 @@ public class LocaleConfig {
         resourceBundleMessageSource.setBasenames("static/i18n/messages");
         return resourceBundleMessageSource;
     }
+
+    /**
+     * 配置 JSR303 国际化问题，让其加载国际化资源文件
+     * @return
+     * @throws Exception
+     */
+    @Bean
+    public Validator getValidator() throws Exception {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setValidationMessageSource(getMessageSource());
+        return validator;
+    }
+
 }

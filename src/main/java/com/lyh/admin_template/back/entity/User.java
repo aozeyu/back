@@ -37,16 +37,17 @@ public class User implements Serializable {
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private Long id;
 
-    @NotEmpty(message = "用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
+    @NotEmpty(message = "{user.name.empty}", groups = {AddGroup.class, UpdateGroup.class})
     @ApiModelProperty(value = "用户名")
     private String name;
 
-    @NotEmpty(message = "手机号不能为空", groups = {AddGroup.class, UpdateGroup.class})
+
+    @NotEmpty(message = "{user.mobile.empty}", groups = {AddGroup.class, UpdateGroup.class})
     @Pattern(message = "手机号格式不合法", regexp = "^[1-9]{1}\\d{10}$", groups = {AddGroup.class, UpdateGroup.class})
     @ApiModelProperty(value = "用户手机号")
     private String mobile;
 
-    @NotEmpty(message = "用户密码不能为空", groups = {AddGroup.class, UpdateGroup.class})
+    @NotEmpty(message = "{user.password.empty}", groups = {AddGroup.class, UpdateGroup.class})
     @ApiModelProperty(value = "用户密码")
     private String password;
 
